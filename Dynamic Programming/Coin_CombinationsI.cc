@@ -1,27 +1,23 @@
 #include<bits/stdc++.h>
 using namespace std;
 #define int long long
+#define Mod 1000000007
 int Combinations(vector<int>&arr, int n , int target)
 {
-	int DP[n+1][target+1];
-	for(int i=0; i<=n;  ++i)
+	vector<int> DP(target+1);
+	DP[0]=1;
+	for(int i=1; i<=target;  ++i)
 	{
-		for(int j=0; j<=target; ++j)
-		{
-			if(j==0)
-				DP[i][j]=1;
-			else if(i==0)
-				DP[i][j]=0;
-			else if(arr[i-1]>j)
-				DP[i][j]=DP[i-1][j];
-			else
-				DP[i][j]=DP[i][j-arr[i-1]]+DP[i-1][j];
-		}
+		for(int j=0; j<n; ++j)
+			if(arr[j]<=i)
+				DP[i]= (DP[i] + DP[i-arr[j]])%Mod;
 	}
-	return DP[n][target];
+	return DP[target];
 }
 signed main()
 {
+	ios::sync_with_stdio(0);
+  	cin.tie(0);
 	int n,target;
 	cin>>n>>target;
 	vector<int> arr(n);
