@@ -1,11 +1,11 @@
 # Contribution
 Step 1:
   Option 1
-  fork_and_knife Fork this repo!
+  Fork this repository!
 Option 2
-  dancers Clone this repo to your local machine using https://github.com/joanaz/HireDot2.git
+  Clone this repo to your local machine using
  
 Step 2
-  HACK AWAY! hammerhammerhammer
+  Do anything you feel that this part should be Improve.
 Step 3
-  arrows_clockwise Create a new pull request using https://github.com/joanaz/HireDot2/compare/.
+ Create a new pull request using
