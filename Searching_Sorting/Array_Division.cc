@@ -1,23 +1,39 @@
 #include<bits/stdc++.h>
 using namespace std;
 #define int long long 
-int Solve(vector<int>&arr, int n, int k)
+int Check(vector<int>&arr,int n, int max_sum)
 {
-	int equalsum,sum=0,ans=0;
-	for(int i=0; i<n; ++i)
-		sum+=arr[i];
-	equalsum=sum/k;
-	sum=0;
-	k--;
+	int noOfSubarray=1,sum=0;
 	for(int i=0; i<n; ++i)
 	{
-		if((sum+arr[i])>equalsum && k)
+		if((sum+arr[i])<=max_sum)
+			sum+=arr[i];
+		else
 		{
-			sum=0;
-			k--;
+			sum=arr[i];
+			noOfSubarray++;
 		}
-		sum+=arr[i];
-		ans=max(sum,ans);
+	}
+	return noOfSubarray;
+}
+int Solve(vector<int>&arr, int n, int k)
+{
+	int lb=INT_MIN,ub=0,ans=0;
+	for(int i=0; i<n; ++i)
+	{
+		lb=max(arr[i],lb);
+		ub+=arr[i];
+	}
+	while(lb<=ub)
+	{
+		int mid=lb-(lb-ub)/2;
+		int res=Check(arr,n,mid);
+		if(res<=k)
+		{
+			ans=mid;
+			ub=mid-1;
+		}else
+			lb=mid+1;
 	}
 	return ans;
 }
